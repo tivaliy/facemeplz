@@ -1,0 +1,35 @@
+# This file configures the facemeplz app which serves public web traffic.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: facemeplz-web-gke
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: facemeplz
+  template:
+    metadata:
+      labels:
+        app: facemeplz
+    spec:
+      containers:
+      - name: facemeplz-app
+        image: gcr.io/$GCP_PROJECT/$IMAGE_NAME:$BUILD_ID
+        # This app listens on port 80 for web traffic by default.
+        ports:
+        - containerPort: 80
+        env:
+          - name: PORT
+            value: "80"
+        envFrom:
+          - configMapRef:
+              name: app-config
+        volumeMounts:
+          - name: config-data-volume
+            mountPath: /etc/config
+            readOnly: true
+      volumes:
+        - name: config-data-volume
+          configMap:
+            name: app-config

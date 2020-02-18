@@ -1,0 +1,13 @@
+import os
+
+SECRET_KEY = os.getenv("SECRET_KEY")
+if not SECRET_KEY:
+    SECRET_KEY = os.urandom(32)
+
+API_V1_STR = "/api/v1"
+
+GCP_STORAGE_BUCKET_NAME = os.getenv("GCP_STORAGE_BUCKET_NAME")
+
+# ML-related config section
+CAFFE_SSD_PROTOTXT_CONFIG_PATH = os.getenv("CAFFE_SSD_PROTOTXT_CONFIG_PATH")
+CAFFE_SSD_MODEL_WEIGHT_CONFIG_PATH = os.getenv("CAFFE_SSD_MODEL_WEIGHT_CONFIG_PATH")  # noqa

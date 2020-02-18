@@ -1,0 +1,10 @@
+.idea
+*.pyc
+.eggs
+*.egg-info
+
+# Ignore .env file with project config parameters, since potentially can store sential data
+.env
+
+# GCP file to access remote GCP resources
+.gcpkey.json
