@@ -1,18 +1,14 @@
 from predictme import CaffeObjectDetector
 
 from ..core import config
-from ..utils import get_byte_fileobj
+from ..storage import file_storage
 
 
-prototxt = get_byte_fileobj(
-    config.GCP_STORAGE_BUCKET_NAME,
-    config.CAFFE_SSD_PROTOTXT_CONFIG_PATH
-)
+# TODO: Add abstraction layer
 
-model_weights = get_byte_fileobj(
-    config.GCP_STORAGE_BUCKET_NAME,
-    config.CAFFE_SSD_MODEL_WEIGHT_CONFIG_PATH
-)
+# Fetch SSD-related config data that is stored in Google Cloud Storage
+prototxt = file_storage.get_file(config.CAFFE_SSD_PROTOTXT_CONFIG_PATH)
+weights = file_storage.get_file(config.CAFFE_SSD_MODEL_WEIGHT_CONFIG_PATH)
 
 # This instance must be shared across project
-ssd_caffe_predictor = CaffeObjectDetector(prototxt, model_weights)
+ssd_caffe_predictor = CaffeObjectDetector(prototxt, weights)

@@ -6,7 +6,7 @@ from flask import render_template, request
 from ..api import api
 from ..main import app
 from ..core import config
-from ..utils import upload_file
+from ..storage import file_storage
 from ..ml.predictor import ssd_caffe_predictor
 from ..ml.utils import bb_draw
 
@@ -32,10 +32,9 @@ def index():
 
         image = bb_draw(photo, bboxes, ext)
 
-        public_url = upload_file(
-            config.GCP_STORAGE_BUCKET_NAME,
-            f"photos/{uuid.uuid4().hex}{ext}",
+        public_url = file_storage.upload_file(
             io.BytesIO(image),
+            f"photos/{uuid.uuid4().hex}{ext}",
             content_type=photo.content_type
         )
 
