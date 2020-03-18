@@ -5,27 +5,9 @@ from google.cloud import storage
 
 def get_byte_fileobj(bucket, path):
     """
-    Retrieve data from a given blob on Google Storage
-    and pass it as a file object.
-
-    :return: file object (BytesIO)
+    Download the contents of this blob as a bytes object.
     """
-    blob = _get_blob(bucket, path)
-    byte_stream = BytesIO()
-    blob.download_to_file(byte_stream)
-    byte_stream.seek(0)
-    return byte_stream
-
-
-def get_bytestring(bucket, path):
-    """
-    Retrieve data from a given blob on Google Storage
-    and pass it as a byte-string.
-
-    :return: byte-string (needs to be decoded)
-    """
-    blob = _get_blob(bucket, path)
-    return blob.download_as_string()
+    return _get_blob(bucket, path).download_as_string()
 
 
 def upload_file(bucket, path, file_obj, content_type=None):
