@@ -5,8 +5,7 @@ Web-based Python Application (Flask) to predict/recognize faces.
 ## Local Development
 
 1. Clone project.
-2. Change directory: `cd facemeplz`.
-2. Create virtual environment for local development and install all necessary dependencies:
+2. Create virtual environment for local development and install project dependencies:
 
    `pip install -r requirements.txt`.
  

@@ -44,6 +44,6 @@ def upload_file(bucket, path, file_obj, content_type=None):
 
 def _get_blob(bucket_name, path):
     storage_client = storage.Client()
-    bucket = storage_client.get_bucket(bucket_name)
+    bucket = storage_client.bucket(bucket_name)
     blob = bucket.blob(path)
     return blob
