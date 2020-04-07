@@ -22,7 +22,7 @@ def bb_draw(file, bounding_boxes, ext, border_color=COLOR_BLUE):
     image = cv2.imdecode(image, cv2.IMREAD_COLOR)
 
     for bb in bounding_boxes:
-        pt1, pt2 = tuple(bb[0]), tuple(bb[1])
+        pt1, pt2 = tuple(bb[0:2]), tuple(bb[2:4])
         image = cv2.rectangle(image, pt1, pt2, border_color, 2)
     _, image = cv2.imencode(ext, image)
     return image

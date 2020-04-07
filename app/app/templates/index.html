@@ -22,6 +22,7 @@
         <p class="alert-success p-3">
           Number of detected faces: <strong>{{ bboxes|length }}</strong>
           <span class="ml-4">Elapsed time: <strong>{{ elapsed_time }} sec</strong></span>
+          <span class="ml-4">Boxes: <strong>{{ bboxes }}</strong></span>
         </p>
         <img src="{{ url_path }}" class="rounded mx-auto d-block img-thumbnail" alt="photo">
       </div>
