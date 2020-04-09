@@ -30,7 +30,7 @@ def index():
         ext = f".{photo.content_type.split('/')[1]}"
 
         with timer() as t:
-            bboxes = ssd_caffe_predictor.predict(photo)
+            bboxes = ssd_caffe_predictor.predict(photo)[0]
         elapsed_time = f"{t.elapsed:.2f}"
         # Set pointer at the very beginning after prediction phase
         photo.seek(0)
