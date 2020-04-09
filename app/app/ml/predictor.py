@@ -4,7 +4,9 @@ from ..core import config
 from ..storage import file_storage
 
 
-# TODO: Add abstraction layer
+# TODO: Add some kind of a 'caching' layer to store instances of predictors
+#  that are configured for different batch size of images, since there is
+#  some weird behaviour when we try to change batch size 'on fly'.
 
 # Fetch SSD-related config data that is stored in Google Cloud Storage
 prototxt = file_storage.get_file(config.CAFFE_SSD_PROTOTXT_CONFIG_PATH)

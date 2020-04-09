@@ -9,5 +9,6 @@ from ...ml.predictor import ssd_caffe_predictor
 @app.route(f"{config.API_V1_STR}/predictions/", methods=["POST"])
 @validate_request
 def route_predictions():
-    bboxes = ssd_caffe_predictor.predict(request.files["file"])
-    return jsonify({'boxes': bboxes})
+    images = request.files.getlist("file")
+    bboxes = ssd_caffe_predictor.predict(images)
+    return jsonify({"boxes": bboxes})
